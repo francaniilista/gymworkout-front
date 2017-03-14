@@ -1,0 +1,31 @@
+{
+  "name": "gymworkout-front",
+  "authors": [
+    "Paulo Franca <francaniilista@gmail.com>"
+  ],
+  "description": "web application project to log all variables during the gym's wourkout in order to show one's progress",
+  "version": "0.0.1",
+  "main": "",
+  "keywords": [
+    "web",
+    "application",
+    "gym",
+    "wourkout",
+    "log"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/francaniilista/gymworkout-front",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.4.6",
+    "angular-resource": "1.4.6",
+    "angular-ui-router": "0.2.10",
+    "bootstrap": "3.1.1"
+  }
+}

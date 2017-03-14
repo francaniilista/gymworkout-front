@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gymworkoutApp" class="no-js"> <!--<![endif]-->
+<head>
+	<title>Gym Workout</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/dashboard.css" rel="stylesheet">
+	<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/angular-resource/angular-resource.js"></script>
+	<script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+</head>
+<body>
+	<!-- Begin top menu -->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/#">Gym Workout</a>
+      </div>
+			<div id="navbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Dashboard</a></li>
+					<li><a href="#">Settings</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- End top menu -->
+
+	<!-- Begin content -->
+	<div class="container-fluid">
+	<div class="row">
+		<!-- Begin Left Menu -->
+		<div class="col-sm-2 col-md-2 sidebar">
+		  <ul class="nav nav-sidebar">
+		    <li><a href="#/">Overview</a></li>
+		    <li class="active"><a href="#/dworkout">Daily's workout</a></li>
+		  </ul>
+		</div>
+	  <!-- End Left Menu -->
+		
+		<!-- Begin main form -->
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<!-- Begin exercise div -->
+			<div class="row">
+				<!-- Begin workflow menu -->
+				<ul class="breadcrumb">
+					<li><a href="#">Training Plan</a></li>
+					<li><a href="#">Workout</a></li>
+					<li class="active">Exercise</li>
+				</ul>
+				<!-- End workflow menu -->
+				<div class="panel panel-default">
+					<div class="panel-heading">Daily workout entry:</div>
+  					<div class="panel-body">
+  						<p class="col-md-offset-1">Fill the workout's data:</p>
+						<form novalidate class="form-horizontal col-md-10" role="form" name="form">
+							<!--### Exercise ###-->
+							<div class="form-group form-group-sm">
+								<label class="control-label col-md-2" for="exercise">Exercise:</label>
+								<div class="col-md-5">
+								  <select class="form-control" id="exercise" name="exercise" ng-model="workout.exercise" 
+								  ng-options="exercise.label for exercise in exercises" required>
+								    <option value="">Select...</option>
+								  </select>
+								</div>
+								<div class="col-md-5" ng-show="form.$submitted">
+								  <span class="bg-danger" ng-show="form.exercise.$error.required">Required field</span> 
+								</div>
+							</div>
+
+							<!--### Series ###-->
+							<div class="form-group form-group-sm">
+								<label class="control-label col-md-2" for="series">Series:</label>
+								<div class="col-md-5">
+									<input type="number" class="form-control col-md-4" id="series" name="series" placeholder="Number of series" ng-model="workout.series" min="1" max="10" integer>
+								</div>
+							</div>
+
+							<!--### Reps ###-->
+							<div class="form-group form-group-sm">
+								<label class="control-label col-md-2" for="repetitions">Reps:</label>
+								<div class="col-md-5">
+									<input type="number" class="form-control" id="repetitions" name="repetitions" placeholder="Enter number of reps" ng-model="workout.reps"  min="1" max="30" integer>
+								</div>
+							</div>
+
+							<!--### Weight ###-->
+							<div class="form-group form-group-sm">
+								<label class="control-label col-md-2" for="weight">Weight:</label>
+								<div class="col-md-5">
+								    <input type="number" class="form-control" id="weight" name="weight" placeholder="Enter how much weight" ng-model="workout.weight" min="1" max="300" integer required="">
+								  </div>
+								  <div class="col-md-5" ng-show="form.$submitted">
+								  <span class="bg-danger" ng-show="form.weight.$error.required">Required field</span> 
+								</div>
+							</div>
+
+							<!--### Date ###-->
+							<div class="form-group form-group-sm">
+								<label class="control-label col-md-2" for="date">Date:</label>
+								<div class="col-md-5">
+								  <input type="date" class="form-control" id="date" name="date" placeholder="Select the date" ng-model="workout.date" required="">
+								</div>
+								<div class="col-md-5" ng-show="form.$submitted">
+									<span class="bg-danger" ng-show="form.date.$error.required">Required field</span> 
+								</div>
+							</div>
+							<!-- ### Submit ### -->
+							<div class="form-group form-group-sm">
+								<div class="col-md-offset-2 col-md-10">
+									<button type="submit" class="btn btn-default">Submit</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- End exercise div -->
+		  <!-- Begin exercise table -->
+		  <div class="row">
+				<table class="table table-striped">
+				  <thead>
+				    <tr>
+				      <th class="col-md-1">#</th>
+				      <th class="col-md-3">Exercise</th>
+				      <th class="col-md-1">Series</th>
+				      <th class="col-md-1">Reps</th>
+				      <th class="col-md-1">Weight</th>
+				      <th class="col-md-1">Date</th>
+				      <th class="col-md-2">Action</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td>1</td>
+				      <td>Squat</td>
+				      <td>3</td>
+				      <td>8</td>
+				      <td>120</td>
+				      <td>06/01/2017</td>
+				      <td>
+				          <button type="button" class="btn btn-default btn-xs">Update</button> | 
+				          <button type="button" class="btn btn-danger btn-xs">Remove</button>
+				      </td>
+				    </tr>
+				    <tr>
+				      <td>2</td>
+				      <td>Squat</td>
+				      <td>3</td>
+				      <td>8</td>
+				      <td>120</td>
+				      <td>06/01/2017</td>
+				      <td>
+				          <button type="button" class="btn btn-default btn-xs">Update</button> | 
+				          <button type="button" class="btn btn-danger btn-xs">Remove</button>
+				      </td>
+				    </tr>
+				  </tbody>
+				</table>
+				<div class="col-md-2">
+					<ul class="pagination pagination-sm">
+						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+					</ul>
+				</div>
+		  </div>
+		  <!-- End exercise table -->
+		</div>
+	    <!-- End main form -->
+	  </div>
+	</div>
+  <!-- End content -->
+</body>
+</html>
