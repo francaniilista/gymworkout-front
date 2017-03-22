@@ -2,13 +2,14 @@
 
 /* App Module */
 
-angular.module('gymworkoutApp', [
+var gymworkoutApp = angular.module('gymworkoutApp', [
     'ngResource',
     'ui.router',
+    'angularModalService',
     'gymworkoutApp.overview',
     'gymworkoutApp.training']);
 
-angular.module('gymworkoutApp').run(['$state',
+gymworkoutApp.run(['$state',
     function($state) {
         $state.go('overview.all');
     }
