@@ -1,5 +1,5 @@
 module.exports = function(config) {
-  config.set({
+  var configuration = {
     basePath : '../',
     files : [
       'app/lib/angular/angular.js',
@@ -23,10 +23,22 @@ module.exports = function(config) {
       'karma-firefox-launcher',
       'karma-jasmine'
     ],
+    customLaunchers: {
+        Chrome_travis_ci: {
+            base: 'Chrome',
+            flags: ['--no-sandbox']
+        }
+    },
     junitReporter : {
       outputFile: 'test_out/unit.xml',
       suite: 'unit'
     }
 
-  })
+  };
+  
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['Chrome_travis_ci'];
+  }
+ 
+  config.set(configuration);
 };

@@ -1,5 +1,6 @@
 # gymworkout-front
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b4c8c4e4363c4cb197fb1f242b3bd33a)](https://www.codacy.com/app/francaniilista/gymworkout-front?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=francaniilista/gymworkout-front&amp;utm_campaign=Badge_Grade) [![Build Status](https://travis-ci.org/francaniilista/gymworkout-front.svg?branch=master)](https://travis-ci.org/francaniilista/gymworkout-front)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b4c8c4e4363c4cb197fb1f242b3bd33a)](https://www.codacy.com/app/francaniilista/gymworkout-front?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=francaniilista/gymworkout-front&amp;utm_campaign=Badge_Grade) [![Build Status](https://travis-ci.org/francaniilista/gymworkout-front.svg?branch=master)](https://travis-ci.org/francaniilista/gymworkout-front)  
+
 This project is part an web application project to log all variables during the gym's wourkout in order to show one's progress.
 
 ## Getting Started
