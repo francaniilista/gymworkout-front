@@ -4,6 +4,31 @@ angular.module('gymworkoutApp.training.controllers', [])
 	.controller('TrainingController', ['$scope', function($scope) {
 
 	}]).controller('TrainingInitController', ['$scope', 'ModalService', 'trainingService', function($scope, ModalService, trainingService) {
+		var enableDisableRemove = function() {
+			$scope.removeToggle = !$scope.removeToggle;
+		};
+
+		var cleanSelectedTraining = function() {
+			$scope.selectedTraining = [];
+		};
+
+		var hasSelection = function(selected, element) {
+			return selected === element ? true : false;
+		};
+
+		var isTrainingSelected = function(selected) {
+			var isSelected = false;
+			if ($scope.removeToggle) {
+				for (var i = 0; i < $scope.selectedTraining.length; i++) {
+					isSelected = hasSelection(selected, $scope.selectedTraining[i]);
+					if (isSelected) {
+						return true;
+					}
+				}
+			}
+			return isSelected;
+		};
+
 		$scope.add = function() {
 			ModalService.showModal({
 				templateUrl: 'modules/training/views/_modal-form.html',
@@ -22,7 +47,8 @@ angular.module('gymworkoutApp.training.controllers', [])
 			if ($scope.removeToggle) {
 				cleanSelectedTraining();
 			} else {
-				for (var selected in $scope.selectedTraining) {
+				for (var i = 0; i < $scope.selectedTraining.length; i++) {
+					var selected = $scope.selectedTraining[i];
 					trainingService.remove(selected);
 				}
 			}
@@ -44,31 +70,6 @@ angular.module('gymworkoutApp.training.controllers', [])
 				console.log("Training plan " + (value + 1) + " selected");
 			}	
 			
-		};
-
-		var enableDisableRemove = function() {
-			$scope.removeToggle = !$scope.removeToggle;
-		}
-
-		var cleanSelectedTraining = function() {
-			$scope.selectedTraining = [];
-		}
-
-		var isTrainingSelected = function(selected) {
-			var isSelected = false;
-			if ($scope.removeToggle) {
-				for (var index in $scope.selectedTraining) {
-					isSelected = hasSelected(selected, $scope.selectedTraining[index]);
-					if (isSelected) {
-						return true;
-					}
-				}
-			}
-			return isSelected;
-		};
-
-		var hasSelected = function(selected, element) {
-			return selected === element ? true : false;
 		};
 
 		$scope.plans = $scope.getAllPlans();
