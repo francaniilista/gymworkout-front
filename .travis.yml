@@ -17,7 +17,8 @@ before_install:
 
 install:
   - npm install
-  
+
 notifications:
   email:
     - francaniilista@gmail.com
+    on_success: always
