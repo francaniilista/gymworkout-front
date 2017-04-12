@@ -16,12 +16,12 @@ angular.module('gymworkoutApp.training').config(['$stateProvider',
 			controller: 'TrainingInitController',
 			templateUrl: 'modules/training/views/training-init.html'
 		}).state('training.workout', {
-			url: '/workout/:id',
+			url: '/:id',
 			controller: 'TrainingWorkoutController',
 			templateUrl: 'modules/training/views/training-workout.html'
 		}).state('training.exercise', {
 			url: '/exercise',
 			controller: 'TrainingExerciseController',
 			templateUrl: 'modules/training/views/training-exercise.html'
-		})
+		});
 	}]);

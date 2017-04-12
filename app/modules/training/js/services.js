@@ -64,6 +64,17 @@ angular.module('gymworkoutApp.training.services', [])
 					plans.splice(i, 1);
 					console.log('Plan removed: ' + JSON.stringify(plan));
 				}
+			},
+
+			update: function(plan) {
+				if (plan != undefined && plan != null) {
+					for (var i = 0; i <= plans.length; i++) {
+						if (isEqual(id, plans[i])) {
+							plans[i];
+							break;
+						}
+					}	
+				}
 			}
 		}
 });

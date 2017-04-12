@@ -1,9 +1,10 @@
 'use strict'
 
 angular.module('gymworkoutApp.training.controllers', [])
-	.controller('TrainingController', ['$scope', function($scope) {
+	.controller('TrainingController', ['$scope',  function($scope) {
 
-	}]).controller('TrainingInitController', ['$scope', 'ModalService', 'trainingService', function($scope, ModalService, trainingService) {
+	}]).controller('TrainingInitController', ['$scope', 'ModalService', 'trainingService', '$state',
+	function($scope, ModalService, trainingService, $state) {
 		var enableDisableRemove = function() {
 			$scope.removeToggle = !$scope.removeToggle;
 		};
@@ -49,7 +50,7 @@ angular.module('gymworkoutApp.training.controllers', [])
 			} else {
 				for (var i = 0; i < $scope.selectedTraining.length; i++) {
 					var selected = $scope.selectedTraining[i];
-					trainingService.remove(selected);
+					trainingService.removeById(selected);
 				}
 			}
 		};
@@ -59,17 +60,22 @@ angular.module('gymworkoutApp.training.controllers', [])
 		};
 
 		$scope.selectTraining = function(value) {
-			if (isTrainingSelected(value)) {
-				var indexOf = $scope.selectedTraining.indexOf(value);
-				if (indexOf !== -1) {
-					$scope.selectedTraining.splice(indexOf, 1);
-					console.log("Training plan " + (value + 1) + " unselected");
+			if ($scope.removeToggle) {
+				if (isTrainingSelected(value)) {
+					var indexOf = $scope.selectedTraining.indexOf(value);
+					if (indexOf !== -1) {
+						$scope.selectedTraining.splice(indexOf, 1);
+						console.log("Training plan " + (value + 1) + " unselected");
+					}
+				} else {
+					$scope.selectedTraining.push(value)
+					console.log("Training plan " + (value + 1) + " selected");
 				}
-			} else {
-				$scope.selectedTraining.push(value)
-				console.log("Training plan " + (value + 1) + " selected");
-			}	
-			
+			}
+		};
+
+		$scope.openTraining = function(id) {
+			$state.go('training.workout', {id: id});
 		};
 
 		$scope.plans = $scope.getAllPlans();
@@ -78,7 +84,7 @@ angular.module('gymworkoutApp.training.controllers', [])
 		$scope.selectedTraining = [];
 
 	}]).controller('TrainingWorkoutController', ['$scope', function($scope) {
-
+		console.log('funcionou');
 	}]).controller('TrainingExerciseController', ['$scope', function($scope) {
 
 	}]).controller('TrainingAddModalController', ['$scope', '$element', 'close',  function($scope, $element, close) {
