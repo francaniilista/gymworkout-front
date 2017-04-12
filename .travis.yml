@@ -17,13 +17,7 @@ before_install:
 
 install:
   - npm install
-
-after_success:
-  notifications:
-    email:
-      - francaniilista@gmail.com
   
-after_failure:
-  notifications:
-    email:
-      - francaniilista@gmail.com
+notifications:
+  email:
+    - francaniilista@gmail.com
