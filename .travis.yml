@@ -20,5 +20,6 @@ install:
 
 notifications:
   email:
-    - francaniilista@gmail.com
+    recipients:
+    	- francaniilista@gmail.com
     on_success: always
