@@ -1,20 +1,18 @@
 var SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 exports.config = {
-	allScriptsTimeout: 11000,
-
+	framework: 'jasmine',
 	specs: ['../test/e2e/*.js'],
-
 	capabilities: {
 		'browserName': 'chrome'
 	},
+	allScriptsTimeout: 11000,
 
 	baseUrl: 'http://localhost:8000/',
 
-	framework: 'jasmine',
-
 	jasmineNodeOpts: {
+		isVerbose: true,
 		showColors: true,
-		defaultTimeoutInterval: 30000
+		defaultTimeoutInterval: 10000
 	},
 	
 	beforeLaunch: function() {
