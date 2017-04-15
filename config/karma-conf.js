@@ -32,6 +32,12 @@ module.exports = function(config) {
       'karma-coverage',
       'karma-jshint-preprocessor'
     ],
+    customLaunchers: {
+        Chrome_travis_ci: {
+            base: 'Chrome',
+            flags: ['--no-sandbox']
+        }
+    },
     preprocessors: {
       'app/js/**/*.js': ['jshint', 'coverage'],
       'app/modules/**/*.js': ['jshint', 'coverage'],
@@ -45,5 +51,10 @@ module.exports = function(config) {
       outputFile: 'test-results/junit-results.xml'
     }
   };
+
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['Chrome_travis_ci'];
+  }
+
   config.set(configuration);
 };
