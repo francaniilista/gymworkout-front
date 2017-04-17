@@ -11,10 +11,7 @@ addons:
       - g++-4.8
 
 before_install:
-  #- 'node_modules/protractor/bin/webdriver-manager update --standalone --chrome'
-  #- 'node_modules/protractor/bin/webdriver-manager start 2>&1 &'  
   - sleep 3
-  #- 'bower install'
   - 'npm install grunt'
   - 'npm install grunt-cli'
   - 'npm install grunt-protractor-webdriver'
@@ -26,6 +23,8 @@ before_install:
 
 install:
   - npm install
+  - 'node_modules/protractor/bin/webdriver-manager update --standalone --chrome'
+  - 'node_modules/protractor/bin/webdriver-manager start 2>&1 &'
 
 notifications:
   email:
