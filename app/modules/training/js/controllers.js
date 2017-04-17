@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 angular.module('gymworkoutApp.training.controllers', [])
 	.controller('TrainingController', ['$scope',  function($scope) {
@@ -65,11 +65,9 @@ angular.module('gymworkoutApp.training.controllers', [])
 					var indexOf = $scope.selectedTraining.indexOf(value);
 					if (indexOf !== -1) {
 						$scope.selectedTraining.splice(indexOf, 1);
-						console.log("Training plan " + (value + 1) + " unselected");
 					}
 				} else {
-					$scope.selectedTraining.push(value)
-					console.log("Training plan " + (value + 1) + " selected");
+					$scope.selectedTraining.push(value);
 				}
 			}
 		};
@@ -84,7 +82,7 @@ angular.module('gymworkoutApp.training.controllers', [])
 		$scope.selectedTraining = [];
 
 	}]).controller('TrainingWorkoutController', ['$scope', function($scope) {
-		console.log('funcionou');
+		
 	}]).controller('TrainingExerciseController', ['$scope', function($scope) {
 
 	}]).controller('TrainingAddModalController', ['$scope', '$element', 'close',  function($scope, $element, close) {

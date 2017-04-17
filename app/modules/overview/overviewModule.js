@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 angular.module('gymworkoutApp.overview', [
 	'gymworkoutApp.overview.controllers']);

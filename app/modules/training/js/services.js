@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 angular.module('gymworkoutApp.training.services', [])
 	.factory('trainingService', function() {
@@ -25,7 +25,6 @@ angular.module('gymworkoutApp.training.services', [])
 
 		return {		
 			getAll: function() {
-				console.log('trainingService: returning all training plans.');
 				return plans;
 			},
 
@@ -37,18 +36,16 @@ angular.module('gymworkoutApp.training.services', [])
 						break;
 					}
 				}
-				console.log('trainingService: returning training plan: ' + JSON.stringify(plan));
 				return plan;
 			},
 
 			save: function (plan) {
-				if (plan != null) {
+				if (plan !== null) {
 					plan.id = plans.length + 1;
-					if (plan.image == null) {
+					if (plan.image === undefined) {
 						plan.image = defaultImage;
 					}
 					plans.push(plan);
-					console.log('Plan saved: ' + JSON.stringify(plan));
 				}
 			},
 
@@ -62,12 +59,11 @@ angular.module('gymworkoutApp.training.services', [])
 					}
 					var plan = plans[i];
 					plans.splice(i, 1);
-					console.log('Plan removed: ' + JSON.stringify(plan));
 				}
 			},
 
 			update: function(plan) {
-				if (plan != undefined && plan != null) {
+				if (plan !== undefined && plan !== null) {
 					for (var i = 0; i <= plans.length; i++) {
 						if (isEqual(id, plans[i])) {
 							plans[i];
@@ -76,5 +72,5 @@ angular.module('gymworkoutApp.training.services', [])
 					}	
 				}
 			}
-		}
+		};
 });
