@@ -27,7 +27,7 @@ install:
 script:
   - 'node_modules/protractor/bin/webdriver-manager update --standalone --chrome'
   - 'node_modules/protractor/bin/webdriver-manager start 2>&1 &'
-  - npm run test
+  - npm test
 
 
 notifications:
