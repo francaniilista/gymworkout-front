@@ -27,8 +27,8 @@ before_install:
 install:
   - npm install
 script:
-  - 'node_modules/protractor/bin/webdriver-manager update --standalone --chrome'
-  - 'node_modules/protractor/bin/webdriver-manager start 2>&1 &'
+  - 'node_modules/protractor/bin/webdriver-manager update --standalone --chrome --versions.chrome=2.29'
+  - 'node_modules/protractor/bin/webdriver-manager start --versions.chrome=2.29 2>&1 &'
   - npm test
 
 
