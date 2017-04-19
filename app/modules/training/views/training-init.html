@@ -10,10 +10,10 @@
 <div class="panel-body">
 	<div class="row placeholders">
 		<div class="col-md-3" ng-repeat="plan in plans track by plan.id">
-			<label ng-class="{'btn': removeToggle}" ng-click="selectTraining(plan.id)" ng-dblclick="openTraining(plan.id)">
+			<label id="training_{{plan.id}}" ng-class="{'btn': removeToggle}" ng-click="selectTraining(plan.id)" ng-dblclick="openTraining(plan.id)">
 				<img ng-src="{{plan.image}}" width="100" height="100" ng-class="{'check': removeToggle && isTrainingSelected(plan.id)}" class="img-rounded">
 			</label>
-			<h4>{{plan.title}}</h4>
+			<h4 id="ttl_{{plan.id}}">{{plan.title}}</h4>
 			<span class="text-muted">{{plan.description}}</span>
 		</div>
 	</div>

@@ -2,7 +2,7 @@
 
 angular.module('gymworkoutApp.training.services', [])
 	.factory('trainingService', function() {
-		var defaultImage = "data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==";
+		var defaultImage = 'data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==';
 		var plans = [
 			{
 				id: 1,
@@ -30,10 +30,12 @@ angular.module('gymworkoutApp.training.services', [])
 
 			getTrainingPlanById: function(id) {
 				var plan = null;
-				for (var i = 0; i <= plans.length; i++) {
-					if (isEqual(id, plans[i])) {
-						plan = plans[i];
-						break;
+				if (plans.length > 0 && id >= 0) {
+					for (var i = 0; i < plans.length; i++) {
+						if (isEqual(Number(id), plans[i])) {
+							plan = plans[i];
+							break;
+						}
 					}
 				}
 				return plan;
@@ -52,7 +54,7 @@ angular.module('gymworkoutApp.training.services', [])
 			removeById: function (id) {
 				if (plans.length > 0 && id >= 0) {
 					var i;
-					for (i = 0; i <= plans.length; i++) {
+					for (i = 0; i < plans.length; i++) {
 						if (isEqual(id, plans[i])) {
 							break;
 						}
@@ -64,9 +66,10 @@ angular.module('gymworkoutApp.training.services', [])
 
 			update: function(plan) {
 				if (plan !== undefined && plan !== null) {
-					for (var i = 0; i <= plans.length; i++) {
+					for (var i = 0; i < plans.length; i++) {
+						var id = Number(plan.id);
 						if (isEqual(id, plans[i])) {
-							plans[i];
+							plans[i] = plan;
 							break;
 						}
 					}	

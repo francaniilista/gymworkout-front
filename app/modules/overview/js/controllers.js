@@ -2,7 +2,7 @@
 
 angular.module('gymworkoutApp.overview.controllers', [])
 	.controller('OverviewController', ['$scope', function($scope) {
-		$scope.test = "test...";
+		$scope.test = 'test...';
 	}]).controller('OverviewAllController', ['$scope', function($scope) {
 		
 	}]);

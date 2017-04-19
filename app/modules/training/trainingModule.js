@@ -8,11 +8,10 @@ angular.module('gymworkoutApp.training').config(['$stateProvider',
 	function($stateProvider) {
 		$stateProvider.state('training', {
 			url: '/training',
-			abstract: true,
 			controller: 'TrainingController',
 			templateUrl: 'modules/training/views/training-plan.html'
 		}).state('training.init', {
-			url: '/init',
+			url: '/list',
 			controller: 'TrainingInitController',
 			templateUrl: 'modules/training/views/training-init.html'
 		}).state('training.workout', {

@@ -36,7 +36,7 @@
 		<div class="col-sm-2 col-md-2 sidebar">
 		  <ul class="nav nav-sidebar">
 		    <li id="overview" ui-sref-active="active"><a ui-sref="overview.all">Overview</a></li>
-		    <li id="workouts" ui-sref-active="active"><a ui-sref="training.init">Daily's workout</a></li>
+		    <li id="training" ui-sref-active="{'active': 'training.**'}"><a ui-sref="training.init">Training Plan</a></li>
 		  </ul>
 		</div>
 	  	<!-- End Left Menu -->
@@ -63,5 +63,6 @@
 
 <script src="modules/training/trainingModule.js"></script>
 <script src="modules/training/js/controllers.js"></script>
+<script src="modules/training/js/TrainingInitController.js"></script>
 <script src="modules/training/js/services.js"></script>
 </html>

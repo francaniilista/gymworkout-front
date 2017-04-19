@@ -9,6 +9,7 @@ module.exports = function(config) {
 
       //including js file
       'app/js/**/*.js',
+      'app/modules/**/controllers.js',
       'app/modules/**/*.js',
 
       //including unit test specs
