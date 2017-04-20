@@ -76,4 +76,15 @@ angular.module('gymworkoutApp.training.services', [])
 				}
 			}
 		};
-});
+}).service('modalService', ['ModalService', 'MODAL_FORM_TRAINING', 
+	function(ModalService, MODAL_FORM_TRAINING) {
+		this.showModal = function(input) {
+			return ModalService.showModal({
+				templateUrl: MODAL_FORM_TRAINING,
+				controller: 'TrainingAddModalController',
+				inputs: input
+			});
+		}
+}])
+.value('MODAL_FORM_TRAINING', 'modules/training/views/_modal-form-training.html')
+.value('MODAL_FORM_WORKOUT','modules/training/views/_modal-form-workout.html');

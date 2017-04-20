@@ -30,6 +30,27 @@ describe('gymworkout-front e2e test\n', function() {
         expect(plans.count()).toBe(3);
     });
 
+    it('Should update a training plan\n', function() {
+        element(by.id('edit')).click();
+
+        var plan = element(by.id('training_2'));
+        var title = element(by.id('ttl_2'));
+        expect(title.getText()).toEqual('Weight loss');
+
+        plan.click();
+
+        var name = element(by.model('name'));
+        browser.wait(EC.visibilityOf(name), 5000);
+        
+        name.clear().then(function() {
+            name.sendKeys('Weight win');
+        });
+
+        element(by.id('save-btn')).click();
+
+        expect(title.getText()).toEqual('Weight win');
+    });
+
     it('Should remove a training plan\n', function() {
         var plan = element(by.id('training_2'));
         var title = element(by.id('ttl_2'));

@@ -1,10 +1,14 @@
 'use strict';
 
 angular.module('gymworkoutApp.training.controllers')
-	.controller('TrainingInitController', ['$scope', 'ModalService', 'trainingService', '$state',
-	function($scope, ModalService, trainingService, $state) {
+	.controller('TrainingInitController', ['$scope', 'modalService', 'trainingService', '$state',
+	function($scope, modalService, trainingService, $state) {
 		var enableDisableRemove = function() {
 			$scope.removeToggle = !$scope.removeToggle;
+		};
+
+		var enableDisableEdit = function() {
+			$scope.editToggle = !$scope.editToggle;
 		};
 
 		var cleanSelectedTraining = function() {
@@ -24,14 +28,18 @@ angular.module('gymworkoutApp.training.controllers')
 						return true;
 					}
 				}
+			} else if ($scope.editToggle) {
+
 			}
 			return isSelected;
 		};
 
 		$scope.add = function() {
-			ModalService.showModal({
-				templateUrl: 'modules/training/views/_modal-form-training.html',
-				controller: 'TrainingAddModalController'
+			modalService.showModal({
+				nameParam: null,
+				descriptionParam: null,
+				msgFn: 'Add',
+				labelFn: 'Save'
 			}).then(function(modal) {
 				modal.element.modal();
 				modal.close.then(function(result) {
@@ -53,6 +61,10 @@ angular.module('gymworkoutApp.training.controllers')
 			}
 		};
 
+		$scope.edit = function() {
+			enableDisableEdit();
+		};
+
 		$scope.selectTraining = function(value) {
 			if ($scope.removeToggle) {
 				if (isTrainingSelected(value)) {
@@ -63,6 +75,23 @@ angular.module('gymworkoutApp.training.controllers')
 				} else {
 					$scope.selectedTraining.push(value);
 				}
+			} else if ($scope.editToggle) {
+				var plan = trainingService.getTrainingPlanById(value);
+
+				modalService.showModal({
+					nameParam: plan.title,
+					descriptionParam: plan.description,
+					msgFn: 'Edit',
+					labelFn: 'Update'
+				}).then(function(modal) {
+					modal.element.modal();
+					modal.close.then(function(result) {
+						plan.title = result.title;
+						plan.description = result.description;
+						trainingService.update(plan);
+						enableDisableEdit();
+					});
+				});
 			}
 		};
 
@@ -72,7 +101,25 @@ angular.module('gymworkoutApp.training.controllers')
 
 		$scope.plans = trainingService.getAll();
 		$scope.removeToggle = false;
+		$scope.editToggle = false;
 		$scope.isTrainingSelected = isTrainingSelected;
 		$scope.selectedTraining = [];
 
+	}]).controller('TrainingAddModalController', ['$scope', '$element', 'nameParam', 'descriptionParam', 'msgFn','labelFn','close',  
+	function($scope, $element, nameParam, descriptionParam, msgFn, labelFn, close) {
+		$scope.name = nameParam;
+		$scope.description = descriptionParam;
+		$scope.msgFn = msgFn;
+		$scope.labelFn = labelFn;
+
+		$scope.save = function() {
+			close({
+				title: $scope.name,
+				description: $scope.description
+			}, 500);
+		};
+
+		$scope.close = function() {
+			$element.modal('hide');
+		};
 	}]);

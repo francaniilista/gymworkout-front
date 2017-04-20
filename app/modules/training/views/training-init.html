@@ -3,15 +3,15 @@
 	<ul class="pull-right panel-controls">
 		<li><a id="add" href ng-click="add()" title="Add"><span class="glyphicon glyphicon-plus"></span></a></li>
 		<li><a id="remove" href ng-click="remove()" title="Remove"><span class="glyphicon glyphicon-minus"></span></a></li>
-		<li><a href title="Options"><span class="glyphicon glyphicon-cog"></span></a></li>
+		<li><a id="edit" href ng-click="edit()" title="Edit"><span class="glyphicon glyphicon-edit"></span></a></li>
 	</ul>
 </div>
 
 <div class="panel-body">
 	<div class="row placeholders">
 		<div class="col-md-3" ng-repeat="plan in plans track by plan.id">
-			<label id="training_{{plan.id}}" ng-class="{'btn': removeToggle}" ng-click="selectTraining(plan.id)" ng-dblclick="openTraining(plan.id)">
-				<img ng-src="{{plan.image}}" width="100" height="100" ng-class="{'check': removeToggle && isTrainingSelected(plan.id)}" class="img-rounded">
+			<label id="training_{{plan.id}}" ng-class="{'btn': removeToggle || editToggle}" ng-click="selectTraining(plan.id)" ng-dblclick="openTraining(plan.id)">
+				<img ng-src="{{plan.image}}" width="100" height="100" ng-class="{'check': (editToggle || removeToggle) && isTrainingSelected(plan.id)}" class="img-rounded">
 			</label>
 			<h4 id="ttl_{{plan.id}}">{{plan.title}}</h4>
 			<span class="text-muted">{{plan.description}}</span>

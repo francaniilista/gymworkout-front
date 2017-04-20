@@ -3,7 +3,8 @@
 angular.module('gymworkoutApp.training.controllers', [])
 	.controller('TrainingController', ['$scope', '$state', function($scope, $state) {
 		$state.go('training.init');
-	}]).controller('TrainingWorkoutController', ['$scope', '$stateParams', '$state', 'trainingService', 'ModalService', function($scope, $stateParams, $state, trainingService, ModalService) {
+	}]).controller('TrainingWorkoutController', ['$scope', '$stateParams', '$state', 'trainingService', 'ModalService', 
+	function($scope, $stateParams, $state, trainingService, ModalService) {
 		$scope.plan = trainingService.getTrainingPlanById($stateParams.id);
 
 		$scope.add = function() {
@@ -25,18 +26,4 @@ angular.module('gymworkoutApp.training.controllers', [])
 		};
 	}]).controller('TrainingExerciseController', ['$scope', function($scope) {
 
-	}]).controller('TrainingAddModalController', ['$scope', '$element', 'close',  function($scope, $element, close) {
-		$scope.name = null;
-		$scope.description = null;
-
-		$scope.save = function() {
-			close({
-				title: $scope.name,
-				description: $scope.description
-			}, 500);
-		};
-
-		$scope.close = function() {
-			$element.modal('hide');
-		};
 	}]);
